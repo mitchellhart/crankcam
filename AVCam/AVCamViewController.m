@@ -392,59 +392,6 @@ double wrapd(double _val, double _min, double _max)
 }
 
 
-//- (void) takePicture
-//{
-//    
-//    // initiate a still image capture, return immediately
-//    // the completionHandler is called when a sample buffer has been captured
-//    AVCaptureConnection *stillImageConnection = [stillImageOutput connectionWithMediaType:AVMediaTypeVideo];
-//    [stillImageOutput captureStillImageAsynchronouslyFromConnection:stillImageConnection
-//                                                  completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *__strong error) {
-//                                                      
-//                                                      NSLog(@"AVAsset is writing 1");
-//                                                      
-//                                                      // set up the AVAssetWriter using the format description from the first sample buffer captured
-//                                                      if ( !assetWriter ) {
-//                                                          NSLog(@"AVAsset is writing 2");
-//                                                          outputURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%llu.mov", NSTemporaryDirectory(), mach_absolute_time()]];
-//                                                          //NSLog(@"Writing movie to \"%@\"", outputURL);
-//                                                          CMFormatDescriptionRef formatDescription = CMSampleBufferGetFormatDescription(imageDataSampleBuffer);
-//                                                          if ( NO == [self setupAssetWriterForURL:outputURL formatDescription:formatDescription] )
-//                                                              NSLog(@"AVAsset something wrong");
-//                                                              return;
-//                                                      }
-//                                                      
-//                                                      // re-time the sample buffer - this sample frameDuration is set to 5 fps
-//                                                      CMSampleTimingInfo timingInfo = kCMTimingInfoInvalid;
-//                                                      timingInfo.duration = frameDuration;
-//                                                      timingInfo.presentationTimeStamp = nextPTS;
-//                                                      CMSampleBufferRef sbufWithNewTiming = NULL;
-//                                                      OSStatus err = CMSampleBufferCreateCopyWithNewTiming(kCFAllocatorDefault,
-//                                                                                                           imageDataSampleBuffer,
-//                                                                                                           1, // numSampleTimingEntries
-//                                                                                                           &timingInfo,
-//                                                                                                           &sbufWithNewTiming);
-//                                                      if (err)
-//                                                          return;
-//                                                      
-//                                                      // append the sample buffer if we can and increment presentation time
-//                                                      if ( [assetWriterInput isReadyForMoreMediaData] ) {
-//                                                          NSLog(@"AVAsset is writing 3");
-//                                                          if ([assetWriterInput appendSampleBuffer:sbufWithNewTiming]) {
-//                                                              nextPTS = CMTimeAdd(frameDuration, nextPTS);
-//                                                          }
-//                                                          else {
-//                                                              NSError *error = [assetWriter error];
-//                                                              NSLog(@"failed to append sbuf: %@", error);
-//                                                          }
-//                                                      }
-//                                                      
-//                                                      // release the copy of the sample buffer we made
-//                                                      CFRelease(sbufWithNewTiming);
-//                                                  }];
-//
-//    
-//}
 
 //-----THIS STARTED / FINISHED THE AVASSETWRITER AND KICKED OFF SAVEMOVIE....
 
@@ -472,7 +419,7 @@ double wrapd(double _val, double _min, double _max)
 //
 //
 
-//------------- MITCH'S WORK ENDS HERE -------------//
+
 
  
 
@@ -685,29 +632,6 @@ double wrapd(double _val, double _min, double _max)
 
 
 
-//---------------CODE FOR STILL CAPTURE AND SAVE--------------------//
-
-//- (IBAction)snapStillImage:(id)sender
-//{
-//	dispatch_async([self sessionQueue], ^{
-//		// Update the orientation on the still image output video connection before capturing.
-//		[[[self stillImageOutput] connectionWithMediaType:AVMediaTypeVideo] setVideoOrientation:[[(AVCaptureVideoPreviewLayer *)[[self previewView] layer] connection] videoOrientation]];
-//		
-//		// Flash set to Auto for Still Capture
-//		[AVCamViewController setFlashMode:AVCaptureFlashModeOff forDevice:[[self videoDeviceInput] device]];
-//		
-//		// Capture a still image.
-//		[[self stillImageOutput] captureStillImageAsynchronouslyFromConnection:[[self stillImageOutput] connectionWithMediaType:AVMediaTypeVideo] completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error) {
-//			
-//			if (imageDataSampleBuffer)
-//			{
-//				NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
-//				UIImage *image = [[UIImage alloc] initWithData:imageData];
-//				[[[ALAssetsLibrary alloc] init] writeImageToSavedPhotosAlbum:[image CGImage] orientation:(ALAssetOrientation)[image imageOrientation] completionBlock:nil];
-//			}
-//		}];
-//	});
-//}
 
 
 
