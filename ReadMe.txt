@@ -4,5 +4,7 @@ DESCRIPTION:
 
 Crank Cam alows user shoot video frames manually with a spinning crank.
 
-========================================================
-Copyright (C) 2014 SuperFort Productions LLC All rights reserved.
+version 0.2 - records video, crank reports stats.
+
+
+
